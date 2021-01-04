@@ -6,7 +6,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = defaultSettings.title || '数据集市' // 标题
+const name = defaultSettings.title || '毕设' // 标题
 
 const port = process.env.port || process.env.npm_config_port || 81 // 端口
 
@@ -33,16 +33,8 @@ module.exports = {
     proxy: {
       // detail: https://cli.vuejs.org/config/#devserver-proxy
       [process.env.VUE_APP_BASE_API]: {
-        // 本地开发地址
-        // target: `http://127.0.0.1:8091`,
-        // target: `http://192.168.3.193:8095`,
-        // target: `http://10.1.236.150:8095/`,
-        // 亚信云
-        target: `http://10.1.236.150:8095`,
-        // 沈阳线上开发地址
-        // target: `http://136.96.134.45:8091`,
-        // 宁夏线上开发地址
-        // target: `http://218.95.161.236:8080`,
+        // 开发地址
+        target: `http://localhost:8080`,
         changeOrigin: true,
         pathRewrite: {
           ['^' + process.env.VUE_APP_BASE_API]: ''
@@ -62,23 +54,6 @@ module.exports = {
   chainWebpack(config) {
     config.plugins.delete('preload') // TODO: need test
     config.plugins.delete('prefetch') // TODO: need test
-
-    // set svg-sprite-loader
-    config.module
-      .rule('svg')
-      .exclude.add(resolve('src/assets/icons'))
-      .end()
-    config.module
-      .rule('icons')
-      .test(/\.svg$/)
-      .include.add(resolve('src/assets/icons'))
-      .end()
-      .use('svg-sprite-loader')
-      .loader('svg-sprite-loader')
-      .options({
-        symbolId: 'icon-[name]'
-      })
-      .end()
 
     // set preserveWhitespace
     config.module

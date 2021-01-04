@@ -1,231 +1,29 @@
+<!--
+ * @Author: wangmeng
+ * @Date: 2021-01-04 16:12:55
+ * @LastEditTime: 2021-01-04 16:13:40
+ * @LastEditors: wangmeng
+ * @Description: In User Settings Edit
+ * @FilePath: https://github.com/wangmeng456/bs-app-vue/blob/master/src/views/login.vue
+-->
 <template>
-  <div class="login">
-    <div>
-      <img src="@/assets/image/login.png" style="width: 380px;height:350px"/>
-    </div>
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form">
-      <h3 class="title">数据集市</h3>
-      <el-form-item prop="username">
-        <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="用户名">
-          <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
-        </el-input>
-      </el-form-item>
-      <el-form-item prop="password">
-        <el-input
-          v-model="loginForm.password"
-          type="password"
-          auto-complete="off"
-          placeholder="密码"
-          @keyup.enter.native="handleLogin"
-        >
-          <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
-        </el-input>
-      </el-form-item>
-      <!-- <el-form-item prop="code">
-        <el-input
-          v-model="loginForm.code"
-          auto-complete="off"
-          placeholder="验证码"
-          style="width: 63%"
-          @keyup.enter.native="handleLogin"
-        >
-          <svg-icon slot="prefix" icon-class="validCode" class="el-input__icon input-icon" />
-        </el-input>
-        <div class="login-code">
-          <img :src="codeUrl" @click="getCode" />
-        </div>
-      </el-form-item> -->
-      <div style="text-align:right;margin:10px 0;">忘记密码？</div>
-      <el-form-item style="width:100%;">
-        <el-button
-          :loading="loading"
-          size="medium"
-          type="primary"
-          style="width:100%;"
-          @click.native.prevent="handleLogin"
-        >
-          <span v-if="!loading">登 录</span>
-          <span v-else>登 录 中...</span>
-        </el-button>
-      </el-form-item>
-    </el-form>
-    <!--  底部  -->
-    <div class="el-login-footer">
-      <!-- <span>Copyright © 2018-2019 xiaochuan.vip All Rights Reserved.</span> -->
-    </div>
-  </div>
+  <div>登录</div>
 </template>
 
 <script>
-// import { getCodeImg } from "@/api/login";
-// import Cookies from "js-cookie";
-// import { getStore } from "@/utils/localStore";
-// import { setToken } from "@/utils/auth";
-
 export default {
-  name: "Login",
+  name: 'login',
   data() {
     return {
-      codeUrl: "",
-      cookiePassword: "",
-      loginForm: {
-        username: "",
-        password: "",
-        rememberMe: false,
-        code: "",
-        uuid: ""
-      },
-      loginRules: {
-        username: [
-          { required: true, trigger: "blur", message: "用户名不能为空" }
-        ],
-        password: [
-          { required: true, trigger: "blur", message: "密码不能为空" }
-        ],
-        code: [{ required: true, trigger: "change", message: "验证码不能为空" }]
-      },
-      loading: false,
-      redirect: undefined,
-      tokenInfo: ""
-    };
+    }
   },
-  // watch: {
-  //   $route: {
-  //     handler: function(route) {
-  //       this.redirect = route.query && route.query.redirect;
-  //     },
-  //     immediate: true
-  //   }
-  // },
-  // created() {
-  //   this.getCode();
-  //   this.getCookie();
-  // },
+  created() {
+  },
   methods: {
-    // getCode() {
-    //   getCodeImg().then(res => {
-    //     this.codeUrl = "data:image/gif;base64," + res.img;
-    //     this.loginForm.uuid = res.uuid;
-    //   });
-    // },
-    // getCookie() {
-    //   const username = Cookies.get("username");
-    //   const password = Cookies.get("password");
-    //   const rememberMe = Cookies.get("rememberMe");
-    //   this.loginForm = {
-    //     username: username === undefined ? this.loginForm.username : username,
-    //     password: password === undefined ? this.loginForm.password : password,
-    //     rememberMe: rememberMe === undefined ? false : Boolean(rememberMe)
-    //   };
-    // },
-    handleLogin() {
-      this.$router.push({ path: this.redirect || "/auxiliaryFunction/auxiliaryFunction" });
-      // this.$refs.loginForm.validate(valid => {
-      //   if (valid) {
-      //     this.loading = true;
-      //     if (this.loginForm.rememberMe) {
-      //       Cookies.set("username", this.loginForm.username, { expires: 60 });
-      //       Cookies.set("password", this.loginForm.password, { expires: 60 });
-      //       Cookies.set("rememberMe", this.loginForm.rememberMe, {
-      //         expires: 60
-      //       });
-      //     } else {
-      //       Cookies.remove("username");
-      //       Cookies.remove("password");
-      //       Cookies.remove("rememberMe");
-      //     }
-      //     this.$store
-      //       .dispatch("Login", this.loginForm)
-      //       .then(res => {
-      //         // this.loading = false;
-      //         this.tokenInfo = res.token;
-      //         this.saveTokenInfo();
-      //         // 判断用户是否有对个身份，跳转至 选择身份 的页面
-      //         if (res.managerFlag) {
-      //           this.$router.push({
-      //             name: "ChooseAuth",
-      //             query: this.$route.query
-      //           });
-      //         } else {
-      //           this.$router.push({ path: this.redirect || "/" });
-      //         }
-      //       })
-      //       .catch(() => {
-      //         this.loading = false;
-      //         this.resetForm("loginForm");
-      //         this.getCode();
-      //       });
-      //   }
-      // });
-    },
-    /**
-     * 保存 token 信息
-     */
-    // saveTokenInfo() {
-    //   setToken(this.tokenInfo);
-    //   this.$store.commit("SET_TOKEN", this.tokenInfo);
-    // }
   }
-};
+}
 </script>
 
-<style rel="stylesheet/scss" lang="scss">
-.login {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 100px;
-  height: 100%;
-  background-size: cover;
-  background: -webkit-linear-gradient(left, #408fbb 0%, #3e94c2 100%);
-}
-.title {
-  margin: 0px auto 30px auto;
-  text-align: center;
-  color: #707070;
-}
+<style lang="scss" scoped>
 
-.login-form {
-  border-radius: 6px;
-  background: #ffffff;
-  width: 500px;
-  padding: 45px 45px 15px 45px;
-  .el-input {
-    height: 38px;
-    input {
-      height: 38px;
-    }
-  }
-  .input-icon {
-    height: 39px;
-    width: 14px;
-    margin-left: 2px;
-  }
-}
-.login-tip {
-  font-size: 13px;
-  text-align: center;
-  color: #bfbfbf;
-}
-.login-code {
-  width: 33%;
-  height: 38px;
-  float: right;
-  img {
-    cursor: pointer;
-    vertical-align: middle;
-  }
-}
-.el-login-footer {
-  height: 40px;
-  line-height: 40px;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  text-align: center;
-  color: #fff;
-  font-family: Arial;
-  font-size: 12px;
-  letter-spacing: 1px;
-}
 </style>

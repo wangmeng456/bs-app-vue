@@ -7,33 +7,23 @@ import Element from 'element-ui'
 import './assets/styles/element-variables.scss'
 
 import '@/assets/styles/index.scss' // global css
-import '@/assets/styles/xiaochuan.scss' // xiaochuan css
+import '@/assets/styles/all.scss' // all css
 import App from './App'
 import store from './store'
 import router from './router'
 import permission from './directive/permission'
-import loginByRsa from '@/api/rsa'
-import './assets/icons' // icon
 import './permission' // permission control
-import {
-  getDicts
-} from "@/api/system/dict/data";
-import {
-  getConfigKey
-} from "@/api/system/config";
 import {
   transformDateFormat,
   resetForm,
   addDateRange,
   selectDictLabel
-} from "@/utils/xiaochuan";
+} from "@/utils/all";
 import Pagination from "@/components/Pagination";
 
 import VCharts from 'v-charts'
 
 // 全局方法挂载
-Vue.prototype.getDicts = getDicts
-Vue.prototype.getConfigKey = getConfigKey
 Vue.prototype.transformDateFormat = transformDateFormat
 Vue.prototype.resetForm = resetForm
 Vue.prototype.addDateRange = addDateRange

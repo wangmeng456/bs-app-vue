@@ -1,13 +1,7 @@
 import {
   constantRoutes
 } from '@/router'
-import {
-  getRouters
-} from '@/api/menu'
 import datas from './data'
-import Layout from '@/layout/index'
-// 这是专门为了多级菜单，而使用的一个用作路由转换的基础组件
-import MultiMenuBaseView from '@/components/MultiMenuBaseView'
 
 const permission = {
   state: {
@@ -55,30 +49,11 @@ const permission = {
 function filterAsyncRouter(asyncRouterMap) {
   return asyncRouterMap.filter(route => {
     if (route.component) {
-      // Layout 组件特殊处理
-      if (route.component === 'Layout') {
-        route.component = Layout
-      }
-      // MultiMenuBaseView 组件特殊处理
-      else if (route.component === 'MultiMenuBaseView') {
-        route.component = MultiMenuBaseView
-      } else {
-        // if(route.path.substring(0,8) === 'reportId'){
-        // route.component = loadParamView(route.component,route.path)
-        // }else{
-        route.component = loadView(route.component)
-        // }
-      }
+      route.component = loadView(route.component)
     }
     if (route.children != null && route.children && route.children.length) {
       route.children = filterAsyncRouter(route.children)
     }
-
-    // 这里可以对路由做特殊处理
-    // if (route.path === 'areaTaskSend') {
-    //   // 当设置 true 的时候该路由不会再侧边栏出现 如401，login等页面，或者如一些编辑页面/edit/1
-    //   route.hidden = true
-    // }
 
     return true
   })

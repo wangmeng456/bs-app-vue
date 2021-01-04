@@ -21,7 +21,7 @@ const service = axios.create({
 service.interceptors.request.use(
   config => {
     // 请求时不加认证的接口名称白名单
-    const whiteList = ['/login', '/captchaImage']
+    const whiteList = ['/login']
     const isWhite = whiteList.some((element, index, arr) => {
       return config.url === element;
     })
@@ -41,7 +41,7 @@ service.interceptors.request.use(
 
 // 响应拦截器
 service.interceptors.response.use(res => {
-    const code = res.data.code
+    const code = res.data.code;
     if (code === 401) {
       MessageBox.confirm(
         '登录状态已过期，您可以继续留在该页面，或者重新登录',
@@ -55,7 +55,7 @@ service.interceptors.response.use(res => {
           location.reload() // 为了重新实例化vue-router对象 避免bug
         })
       })
-    } else if (code !== 200) {
+    } else if (code !== 0) {
       Notification.error({
         title: res.data.msg
       })

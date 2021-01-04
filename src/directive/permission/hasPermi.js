@@ -1,6 +1,6 @@
  /**
  * 操作权限处理
- * Copyright (c) 2019 xiaochuan
+ * Copyright (c) 2019 all
  */
  
 import store from '@/store'
