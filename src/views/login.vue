@@ -141,7 +141,6 @@ export default {
             })
             .catch(() => {
               this.loading = false;
-              this.$router.push({ path: this.redirect || "/" });
               this.resetForm("loginForm");
             });
         }
