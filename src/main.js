@@ -11,6 +11,7 @@ import '@/assets/styles/all.scss' // all css
 import App from './App'
 import store from './store'
 import router from './router'
+import './assets/icons' // icon
 import permission from './directive/permission'
 import './permission' // permission control
 import {

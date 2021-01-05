@@ -26,7 +26,7 @@ export const constantRoutes = [
     hidden: true
   },
   {
-    path: "/",
+    path: "/index",
     component: () => import("@/views/index"),
     hidden: true
   },

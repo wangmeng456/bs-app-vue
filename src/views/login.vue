@@ -1,9 +1,9 @@
 <!--
  * @Author: wangmeng
  * @Date: 2021-01-04 16:12:55
- * @LastEditTime: 2021-01-04 16:13:40
+ * @LastEditTime: 2021-01-05 14:04:12
  * @LastEditors: wangmeng
- * @Description: In User Settings Edit
+ * @Description: 登录页
  * @FilePath: https://github.com/wangmeng456/bs-app-vue/blob/master/src/views/login.vue
 -->
 <template>
@@ -22,6 +22,7 @@
           auto-complete="off"
           placeholder="账号"
         >
+          <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
         </el-input>
       </el-form-item>
       <el-form-item prop="password">
@@ -32,26 +33,13 @@
           placeholder="密码"
           @keyup.enter.native="handleLogin"
         >
+          <svg-icon slot="prefix" icon-class="password" class="el-input__icon input-icon" />
         </el-input>
       </el-form-item>
-      <el-form-item prop="code">
-        <el-input
-          v-model="loginForm.code"
-          auto-complete="off"
-          placeholder="验证码"
-          style="width: 63%"
-          @keyup.enter.native="handleLogin"
-        >
-        </el-input>
-        <div class="login-code">
-          <!-- <img :src="codeUrl" @click="getCode" /> -->
-        </div>
-      </el-form-item>
-      <el-checkbox
-        v-model="loginForm.rememberMe"
-        style="margin: 0px 0px 25px 0px"
-        >记住密码</el-checkbox
-      >
+      <div class="register">
+        <div>忘记密码？</div>
+        <div>还没有账号，去<span>注册</span></div>
+      </div>
       <el-form-item style="width: 100%">
         <el-button
           :loading="loading"
@@ -80,12 +68,9 @@ export default {
   name: "Login",
   data() {
     return {
-      codeUrl: "",
       loginForm: {
         username: "",
         password: "",
-        rememberMe: false,
-        code: "",
       },
       loginRules: {
         username: [
@@ -93,10 +78,7 @@ export default {
         ],
         password: [
           { required: true, trigger: "blur", message: "密码不能为空" },
-        ],
-        code: [
-          { required: true, trigger: "change", message: "验证码不能为空" },
-        ],
+        ]
       },
       loading: false,
       redirect: undefined,
@@ -104,55 +86,43 @@ export default {
     };
   },
   created() {
-    this.getCookie();
+    // this.getCookie();
   },
   methods: {
-    getCookie() {
-      const username = Cookies.get("username");
-      const password = Cookies.get("password");
-      const rememberMe = Cookies.get("rememberMe");
-      this.loginForm = {
-        username: username === undefined ? this.loginForm.username : username,
-        password: password === undefined ? this.loginForm.password : password,
-        rememberMe: rememberMe === undefined ? false : Boolean(rememberMe),
-      };
-    },
+    // getCookie() {
+    //   const username = Cookies.get("username");
+    //   const password = Cookies.get("password");
+    //   this.loginForm = {
+    //     username: username === undefined ? this.loginForm.username : username,
+    //     password: password === undefined ? this.loginForm.password : password,
+    //   };
+    // },
     handleLogin() {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.loading = true;
-          if (this.loginForm.rememberMe) {
-            Cookies.set("username", this.loginForm.username, { expires: 60 });
-            Cookies.set("password", this.loginForm.password, { expires: 60 });
-            Cookies.set("rememberMe", this.loginForm.rememberMe, {
-              expires: 60,
-            });
-          } else {
-            Cookies.remove("username");
-            Cookies.remove("password");
-            Cookies.remove("rememberMe");
-          }
-          this.$store
-            .dispatch("Login", this.loginForm)
-            .then((res) => {
-              this.tokenInfo = res.token;
-              this.saveTokenInfo();
-              this.$router.push({ path: this.redirect || "/" });
-            })
-            .catch(() => {
-              this.loading = false;
-              this.resetForm("loginForm");
-            });
+          this.$router.push({ path: this.redirect || "/index" });
+          // this.$store
+          //   .dispatch("Login", this.loginForm)
+          //   .then((res) => {
+          //     this.tokenInfo = res.token;
+          //     this.saveTokenInfo();
+          //     this.$router.push({ path: this.redirect || "/index" });
+          //   })
+          //   .catch(() => {
+          //     this.loading = false;
+          //     this.resetForm("loginForm");
+          //   });
         }
       });
     },
     /**
      * 保存 token 信息
      */
-    saveTokenInfo() {
-      setToken(this.tokenInfo);
-      this.$store.commit("SET_TOKEN", this.tokenInfo);
-    },
+    // saveTokenInfo() {
+    //   setToken(this.tokenInfo);
+    //   this.$store.commit("SET_TOKEN", this.tokenInfo);
+    // },
   },
 };
 </script>
@@ -200,6 +170,16 @@ export default {
   img {
     cursor: pointer;
     vertical-align: middle;
+  }
+}
+.register {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 18px;
+  cursor: pointer;
+  span {
+    color: #1890ff;
   }
 }
 .el-login-footer {

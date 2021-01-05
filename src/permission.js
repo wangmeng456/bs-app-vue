@@ -13,6 +13,7 @@ NProgress.configure({
 // 免登录路由白名单
 const whiteList = [
   "/login",
+  "/index",
 ];
 
 router.beforeEach((to, from, next) => {
@@ -21,7 +22,7 @@ router.beforeEach((to, from, next) => {
     /* has token*/
     if (to.path === "/login") {
       next({
-        path: "/"
+        path: "/index"
       });
       NProgress.done();
     } else {
