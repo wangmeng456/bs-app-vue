@@ -134,6 +134,7 @@ export default {
   align-items: center;
   height: 100%;
   background-size: cover;
+  background-image: url("../assets/image/login.png");
 }
 .title {
   margin: 0px auto 30px auto;
