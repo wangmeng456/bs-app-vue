@@ -1,9 +1,9 @@
 <!--
  * @Author: wangmeng
  * @Date: 2021-01-04 16:12:55
- * @LastEditTime: 2021-01-04 17:21:00
+ * @LastEditTime: 2021-01-08 16:34:03
  * @LastEditors: wangmeng
- * @Description: In User Settings Edit
+ * @Description: 学习社区页
  * @FilePath: https://github.com/wangmeng456/bs-app-vue/blob/master/src/views/index.vue
 -->
 <template>
@@ -15,7 +15,7 @@
         </el-carousel-item>
       </el-carousel>
       <div class="classification">
-        <div v-for="(item, index) in btnData" :key="index">
+        <div @click="handleCode(index)" v-for="(item, index) in btnData" :key="index">
           <el-card class="box-card" shadow="hover">
             <img
               :src="require('@/assets/image/home/img-' + index + '.png')"
@@ -44,37 +44,37 @@
               </el-card>
             </el-col>
             <el-col :span="6">
-              <el-card v-if="item[index+1]" class="box-card" shadow="hover">
-                <img :src="item[index+1].img" alt="暂无图片" />
+              <el-card v-if="item[index + 1]" class="box-card" shadow="hover">
+                <img :src="item[index + 1].img" alt="暂无图片" />
                 <div class="box-font">
-                  <div class="box-title">{{ item[index+1].title }}</div>
+                  <div class="box-title">{{ item[index + 1].title }}</div>
                   <div class="box-teacher">
-                    <img :src="item[index+1].head" alt="暂无图片" />
-                    <span>{{ item[index+1].name }}</span>
+                    <img :src="item[index + 1].head" alt="暂无图片" />
+                    <span>{{ item[index + 1].name }}</span>
                   </div>
                 </div>
               </el-card>
             </el-col>
             <el-col :span="6">
-              <el-card v-if="item[index+2]" class="box-card" shadow="hover">
-                <img :src="item[index+2].img" alt="暂无图片" />
+              <el-card v-if="item[index + 2]" class="box-card" shadow="hover">
+                <img :src="item[index + 2].img" alt="暂无图片" />
                 <div class="box-font">
-                  <div class="box-title">{{ item[index+2].title }}</div>
+                  <div class="box-title">{{ item[index + 2].title }}</div>
                   <div class="box-teacher">
-                    <img :src="item[index+2].head" alt="暂无图片" />
-                    <span>{{ item[index+2].name }}</span>
+                    <img :src="item[index + 2].head" alt="暂无图片" />
+                    <span>{{ item[index + 2].name }}</span>
                   </div>
                 </div>
               </el-card>
             </el-col>
             <el-col :span="6">
-              <el-card v-if="item[index+3]" class="box-card" shadow="hover">
-                <img :src="item[index+3].img" alt="暂无图片" />
+              <el-card v-if="item[index + 3]" class="box-card" shadow="hover">
+                <img :src="item[index + 3].img" alt="暂无图片" />
                 <div class="box-font">
-                  <div class="box-title">{{ item[index+3].title }}</div>
+                  <div class="box-title">{{ item[index + 3].title }}</div>
                   <div class="box-teacher">
-                    <img :src="item[index+3].head" alt="暂无图片" />
-                    <span>{{ item[index+3].name }}</span>
+                    <img :src="item[index + 3].head" alt="暂无图片" />
+                    <span>{{ item[index + 3].name }}</span>
                   </div>
                 </div>
               </el-card>
@@ -86,11 +86,11 @@
     <div class="content">
       <div class="title">优秀课程</div>
       <div class="box">
-        <div v-for="(item, index) in boxDatas" :key="index">
+        <div v-for="(item, index) in videoDatas" :key="index">
           <el-row>
             <el-col :span="6">
               <el-card v-if="item[index]" class="box-card" shadow="hover">
-                <img :src="item[index].img" alt="暂无图片" />
+                <Video :img="item[index].img" />
                 <div class="box-font">
                   <div class="box-title">{{ item[index].title }}</div>
                   <div class="box-teacher">
@@ -101,37 +101,37 @@
               </el-card>
             </el-col>
             <el-col :span="6">
-              <el-card v-if="item[index+1]" class="box-card" shadow="hover">
-                <img :src="item[index+1].img" alt="暂无图片" />
+              <el-card v-if="item[index + 1]" class="box-card" shadow="hover">
+                <Video :img="item[index + 1].img" />
                 <div class="box-font">
-                  <div class="box-title">{{ item[index+1].title }}</div>
+                  <div class="box-title">{{ item[index + 1].title }}</div>
                   <div class="box-teacher">
-                    <img :src="item[index+1].head" alt="暂无图片" />
-                    <span>{{ item[index+1].name }}</span>
+                    <img :src="item[index + 1].head" alt="暂无图片" />
+                    <span>{{ item[index + 1].name }}</span>
                   </div>
                 </div>
               </el-card>
             </el-col>
             <el-col :span="6">
-              <el-card v-if="item[index+2]" class="box-card" shadow="hover">
-                <img :src="item[index+2].img" alt="暂无图片" />
+              <el-card v-if="item[index + 2]" class="box-card" shadow="hover">
+                <Video :img="item[index + 2].img" />
                 <div class="box-font">
-                  <div class="box-title">{{ item[index+2].title }}</div>
+                  <div class="box-title">{{ item[index + 2].title }}</div>
                   <div class="box-teacher">
-                    <img :src="item[index+2].head" alt="暂无图片" />
-                    <span>{{ item[index+2].name }}</span>
+                    <img :src="item[index + 2].head" alt="暂无图片" />
+                    <span>{{ item[index + 2].name }}</span>
                   </div>
                 </div>
               </el-card>
             </el-col>
             <el-col :span="6">
-              <el-card v-if="item[index+3]" class="box-card" shadow="hover">
-                <img :src="item[index+3].img" alt="暂无图片" />
+              <el-card v-if="item[index + 3]" class="box-card" shadow="hover">
+                <Video :img="item[index + 3].img" />
                 <div class="box-font">
-                  <div class="box-title">{{ item[index+3].title }}</div>
+                  <div class="box-title">{{ item[index + 3].title }}</div>
                   <div class="box-teacher">
-                    <img :src="item[index+3].head" alt="暂无图片" />
-                    <span>{{ item[index+3].name }}</span>
+                    <img :src="item[index + 3].head" alt="暂无图片" />
+                    <span>{{ item[index + 3].name }}</span>
                   </div>
                 </div>
               </el-card>
@@ -140,12 +140,25 @@
         </div>
       </div>
     </div>
+    <div class="content">
+      <div class="title">教学体系</div>
+      <div class="box">
+        <div>
+          <div>级别</div>
+          <div>年级</div>
+          <div>课程</div>
+          <div>编程语言</div>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import Video from "@/components/Video";
 export default {
   name: "index",
+  components: { Video },
   data() {
     return {
       carouselData: [
@@ -157,6 +170,7 @@ export default {
         { title: "开始Python编程" },
         { title: "开始C++编程" },
         { title: "开始JS编程" },
+        { title: "图形化编程" },
         { title: "竞赛专区" },
       ],
       boxData: [
@@ -204,6 +218,27 @@ export default {
         },
       ],
       boxDatas: [],
+      videoData: [
+        {
+          img: require("../assets/mp4/shipin.mp4"),
+          title: "教学视频",
+          head: require("@/assets/image/home/head-0.png"),
+          name: "太难啦",
+        },
+        {
+          img: require("../assets/mp4/shipin.mp4"),
+          title: "教学视频",
+          head: require("@/assets/image/home/head-0.png"),
+          name: "太难啦",
+        },
+        {
+          img: require("../assets/mp4/shipin.mp4"),
+          title: "教学视频",
+          head: require("@/assets/image/home/head-0.png"),
+          name: "太难啦",
+        },
+      ],
+      videoDatas: []
     };
   },
   created() {
@@ -214,7 +249,15 @@ export default {
       for (let i = 0; i < this.boxData.length; ) {
         this.boxDatas.push(this.boxData.slice(i, (i += 4)));
       }
+      for (let i = 0; i < this.videoData.length; ) {
+        this.videoDatas.push(this.videoData.slice(i, (i += 4)));
+      }
     },
+    handleCode(data) {
+      if(data === 3) {
+        this.$router.push({ path: "/codeMirror" });
+      }
+    }
   },
 };
 </script>
@@ -239,7 +282,7 @@ export default {
     }
     .classification {
       width: 100%;
-      padding: 0 100px;
+      padding: 0 90px;
       position: absolute;
       z-index: 99;
       top: 300px;

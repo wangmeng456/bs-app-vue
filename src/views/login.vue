@@ -1,7 +1,7 @@
 <!--
  * @Author: wangmeng
  * @Date: 2021-01-04 16:12:55
- * @LastEditTime: 2021-01-05 14:04:12
+ * @LastEditTime: 2021-01-08 16:34:55
  * @LastEditors: wangmeng
  * @Description: 登录页
  * @FilePath: https://github.com/wangmeng456/bs-app-vue/blob/master/src/views/login.vue
@@ -14,7 +14,7 @@
       :rules="loginRules"
       class="login-form"
     >
-      <h3 class="title">毕设</h3>
+      <h3 class="title">XXX</h3>
       <el-form-item prop="username">
         <el-input
           v-model="loginForm.username"
@@ -55,7 +55,7 @@
     </el-form>
     <!--  底部  -->
     <div class="el-login-footer">
-      <span>Copyright © 2020-2021 bishe All Rights Reserved.</span>
+      <!-- <span>Copyright © 2020-2021 bishe All Rights Reserved.</span> -->
     </div>
   </div>
 </template>

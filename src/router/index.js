@@ -21,6 +21,11 @@ export const constantRoutes = [
     hidden: true
   },
   {
+    path: "/",
+    component: () => import("@/views/descibe"),
+    hidden: true
+  },
+  {
     path: "/login",
     component: () => import("@/views/login"),
     hidden: true
@@ -28,6 +33,11 @@ export const constantRoutes = [
   {
     path: "/index",
     component: () => import("@/views/index"),
+    hidden: true
+  },
+  {
+    path: "/codeMirror",
+    component: () => import("@/views/codeMirror"),
     hidden: true
   },
 ];

@@ -24,6 +24,16 @@ import Pagination from "@/components/Pagination";
 
 import VCharts from 'v-charts'
 
+import VueVideoPlayer from 'vue-video-player';
+import 'video.js/dist/video-js.css';
+
+// 引入jshint用于实现js自动补全提示 
+import jshint from "jshint";
+window.JSHINT = jshint.JSHINT;
+// 引入代码编辑器 
+import { codemirror } from "vue-codemirror";
+import "codemirror/lib/codemirror.css";
+
 // 全局方法挂载
 Vue.prototype.transformDateFormat = transformDateFormat
 Vue.prototype.resetForm = resetForm
@@ -84,6 +94,10 @@ Vue.use(Element, {
 
 // v-charts
 Vue.use(VCharts)
+
+Vue.use(VueVideoPlayer);
+
+Vue.use(codemirror);
 
 Vue.config.productionTip = false
 

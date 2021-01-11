@@ -12,8 +12,10 @@ NProgress.configure({
 
 // 免登录路由白名单
 const whiteList = [
+  "/",
   "/login",
   "/index",
+  "/codeMirror",
 ];
 
 router.beforeEach((to, from, next) => {
