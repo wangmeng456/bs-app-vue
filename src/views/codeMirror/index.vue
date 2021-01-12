@@ -1,7 +1,7 @@
 <!--
  * @Author: wangmeng
  * @Date: 2021-01-06 11:38:40
- * @LastEditTime: 2021-01-12 11:24:40
+ * @LastEditTime: 2021-01-12 16:00:14
  * @LastEditors: wangmeng
  * @Description: 图形化编程页
  * @FilePath: https://github.com/wangmeng456/bs-app-vue/blob/master/src/views/codeMirror/index.vue
@@ -32,6 +32,7 @@
                 v-model="checked"
                 :data="transferData"
                 :titles="['Source', 'Target']"
+                target-order="push"
                 @change="getObject"
               >
                 <span slot-scope="{ option }"
@@ -79,8 +80,8 @@ export default {
         { name: "运算", data: 2 },
       ],
       activeTabIndex: 0,
-      font: 0,
-      speak: "",
+      // font: 0,
+      // speak: "",
       transferData: [
         { key: 0, label: "11111111111", disabled: false, input: 0 },
         { key: 1, label: "22222222222", disabled: false, input: 0 },
@@ -128,7 +129,7 @@ export default {
     },
     //右侧列表元素变化时触发
     getObject(value, direction, movedKeys) {
-      const arr = [];
+      const arr = []; // 为获取的右侧数据来联动图形变化
       for(let i = 0; i < value.length; i++) {
         arr.push({
           data: this.transferData[value[i]].label,
