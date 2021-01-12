@@ -1,7 +1,7 @@
 <!--
  * @Author: wangmeng
  * @Date: 2021-01-06 11:38:40
- * @LastEditTime: 2021-01-12 16:00:14
+ * @LastEditTime: 2021-01-12 17:18:45
  * @LastEditors: wangmeng
  * @Description: 图形化编程页
  * @FilePath: https://github.com/wangmeng456/bs-app-vue/blob/master/src/views/codeMirror/index.vue
@@ -37,7 +37,7 @@
               >
                 <span slot-scope="{ option }"
                   >{{ option.label }}
-                  <el-input v-model="option.input" name="input"></el-input>
+                  <el-input v-model="option.input" @change="activeInput(option)" name="input"></el-input>
                 </span>
               </el-transfer>
               <!-- <div ref="element" class="box" v-drag draggable="false">
@@ -85,10 +85,11 @@ export default {
       transferData: [
         { key: 0, label: "11111111111", disabled: false, input: 0 },
         { key: 1, label: "22222222222", disabled: false, input: 0 },
-        { key: 2, label: "33333333333", disabled: false, input: 0 },
-        { key: 3, label: "44444444444", disabled: false, input: 0 },
+        { key: 2, label: "水平移动", disabled: false, input: 0 },
+        { key: 3, label: "垂直移动", disabled: false, input: 0 },
       ], //Transfer 的数据源
       checked: [], //穿梭框绑定的数据，选定到右侧框中的数据项的value组成的数组
+      arr: [], // 为获取的右侧数据来联动图形变化
     };
   },
   // directives: {
@@ -129,23 +130,41 @@ export default {
     },
     //右侧列表元素变化时触发
     getObject(value, direction, movedKeys) {
-      const arr = []; // 为获取的右侧数据来联动图形变化
       for(let i = 0; i < value.length; i++) {
-        arr.push({
+        this.arr.push({
           data: this.transferData[value[i]].label,
           len: this.transferData[value[i]].input
         })
       }
     },
+    activeInput(e) {
+      for(let i = 0; i < this.arr.length; i++) {
+        if(this.arr[i].data == e.label) {
+          this.arr[i].len = e.input;
+        }
+      }
+    },
     handleBtn() {
       let zhuzhu = document.getElementById("zhuzhu");
       let left = document.getElementById("left");
-      zhuzhu.style.marginTop = this.font+'px';
-      let div = document.createElement('div');
-      div.style.fontSize = '30px';
-      let textnode = document.createTextNode(this.speak);
-      div.appendChild(textnode);
-      left.appendChild(div);
+      for(let i = 0; i < this.arr.length; i++) {
+        switch (this.arr[i].data) {
+          case "垂直移动" :
+            zhuzhu.style.marginTop = this.arr[i].len+'px';
+            break;
+          case "水平移动" :
+            zhuzhu.style.marginLeft = this.arr[i].len+'px';
+            break;
+          default: 
+            break;
+        }
+      }
+      // zhuzhu.style.marginTop = this.font+'px';
+      // let div = document.createElement('div');
+      // div.style.fontSize = '30px';
+      // let textnode = document.createTextNode(this.speak);
+      // div.appendChild(textnode);
+      // left.appendChild(div);
     }
   },
 };
