@@ -40,6 +40,26 @@ export const constantRoutes = [
     component: () => import("@/views/codeMirror"),
     hidden: true
   },
+  {
+    path: "/course",
+    component: () => import("@/views/course/index"),
+    hidden: true
+  },
+  {
+    path: "/courseDetails",
+    component: () => import("@/views/course/courseDetails"),
+    hidden: true
+  },
+  {
+    path: "/personalCenter",
+    component: () => import("@/views/personalCenter/index"),
+    hidden: true
+  },
+  {
+    path: "/personalEdit",
+    component: () => import("@/views/personalEdit/index"),
+    hidden: true
+  },
 ];
 
 export default new Router({

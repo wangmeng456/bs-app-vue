@@ -1,13 +1,10 @@
 <!--
  * @Author: wangmeng
- * @Date: 2021-01-04 16:12:55
- * @LastEditTime: 2021-01-08 16:34:03
- * @LastEditors: wangmeng
  * @Description: 学习社区页
- * @FilePath: https://github.com/wangmeng456/bs-app-vue/blob/master/src/views/index.vue
 -->
 <template>
   <div class="home">
+    <Header />
     <div class="carousel">
       <el-carousel :interval="5000">
         <el-carousel-item v-for="(item, index) in carouselData" :key="index">
@@ -15,7 +12,11 @@
         </el-carousel-item>
       </el-carousel>
       <div class="classification">
-        <div @click="handleCode(index)" v-for="(item, index) in btnData" :key="index">
+        <div
+          @click="handleCode(index)"
+          v-for="(item, index) in btnData"
+          :key="index"
+        >
           <el-card class="box-card" shadow="hover">
             <img
               :src="require('@/assets/image/home/img-' + index + '.png')"
@@ -23,63 +24,6 @@
             />
             <div class="box-font">{{ item.title }}</div>
           </el-card>
-        </div>
-      </div>
-    </div>
-    <div class="content">
-      <div class="title">推荐作品</div>
-      <div class="box">
-        <div v-for="(item, index) in boxDatas" :key="index">
-          <el-row>
-            <el-col :span="6">
-              <el-card v-if="item[index]" class="box-card" shadow="hover">
-                <img :src="item[index].img" alt="暂无图片" />
-                <div class="box-font">
-                  <div class="box-title">{{ item[index].title }}</div>
-                  <div class="box-teacher">
-                    <img :src="item[index].head" alt="暂无图片" />
-                    <span>{{ item[index].name }}</span>
-                  </div>
-                </div>
-              </el-card>
-            </el-col>
-            <el-col :span="6">
-              <el-card v-if="item[index + 1]" class="box-card" shadow="hover">
-                <img :src="item[index + 1].img" alt="暂无图片" />
-                <div class="box-font">
-                  <div class="box-title">{{ item[index + 1].title }}</div>
-                  <div class="box-teacher">
-                    <img :src="item[index + 1].head" alt="暂无图片" />
-                    <span>{{ item[index + 1].name }}</span>
-                  </div>
-                </div>
-              </el-card>
-            </el-col>
-            <el-col :span="6">
-              <el-card v-if="item[index + 2]" class="box-card" shadow="hover">
-                <img :src="item[index + 2].img" alt="暂无图片" />
-                <div class="box-font">
-                  <div class="box-title">{{ item[index + 2].title }}</div>
-                  <div class="box-teacher">
-                    <img :src="item[index + 2].head" alt="暂无图片" />
-                    <span>{{ item[index + 2].name }}</span>
-                  </div>
-                </div>
-              </el-card>
-            </el-col>
-            <el-col :span="6">
-              <el-card v-if="item[index + 3]" class="box-card" shadow="hover">
-                <img :src="item[index + 3].img" alt="暂无图片" />
-                <div class="box-font">
-                  <div class="box-title">{{ item[index + 3].title }}</div>
-                  <div class="box-teacher">
-                    <img :src="item[index + 3].head" alt="暂无图片" />
-                    <span>{{ item[index + 3].name }}</span>
-                  </div>
-                </div>
-              </el-card>
-            </el-col>
-          </el-row>
         </div>
       </div>
     </div>
@@ -141,13 +85,63 @@
       </div>
     </div>
     <div class="content">
+      <div class="title">试题推荐</div>
+      <div class="box">
+        <div v-for="(item, index) in boxDatas" :key="index">
+          <el-row>
+            <el-col :span="6">
+              <el-card v-if="item[index]" class="box-card" shadow="hover">
+                <div class="box-font">
+                  <div class="box-title">{{ item[index].title }}</div>
+                  <div class="box-task">
+                    <span>行业大佬试题推荐</span>
+                  </div>
+                </div>
+              </el-card>
+            </el-col>
+            <el-col :span="6">
+              <el-card v-if="item[index + 1]" class="box-card" shadow="hover">
+                <div class="box-font">
+                  <div class="box-title">{{ item[index + 1].title }}</div>
+                  <div class="box-task">
+                    <span>行业大佬试题推荐</span>
+                  </div>
+                </div>
+              </el-card>
+            </el-col>
+            <el-col :span="6">
+              <el-card v-if="item[index + 2]" class="box-card" shadow="hover">
+                <div class="box-font">
+                  <div class="box-title">{{ item[index + 2].title }}</div>
+                  <div class="box-task">
+                    <span>行业大佬试题推荐</span>
+                  </div>
+                </div>
+              </el-card>
+            </el-col>
+            <el-col :span="6">
+              <el-card v-if="item[index + 3]" class="box-card" shadow="hover">
+                <div class="box-font">
+                  <div class="box-title">{{ item[index + 3].title }}</div>
+                  <div class="box-task">
+                    <span>行业大佬试题推荐</span>
+                  </div>
+                </div>
+              </el-card>
+            </el-col>
+          </el-row>
+        </div>
+      </div>
+    </div>
+    <div class="content">
       <div class="title">教学体系</div>
       <div class="box">
-        <div>
-          <div>级别</div>
-          <div>年级</div>
-          <div>课程</div>
-          <div>编程语言</div>
+        <div class="boxes">
+          <div class="box-list" v-for="(item, index) in boxList" :key="index">
+            <!-- <el-button :icon="item.icon" size="mini" type="warning" circle></el-button> -->
+            <span>{{item.desc}}</span>
+            <div class="list-line"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -155,10 +149,11 @@
 </template>
 
 <script>
+import Header from "@/components/Header";
 import Video from "@/components/Video";
 export default {
   name: "index",
-  components: { Video },
+  components: { Video, Header },
   data() {
     return {
       carouselData: [
@@ -167,54 +162,32 @@ export default {
         { img: require("@/assets/image/home/bg-three.png") },
       ],
       btnData: [
-        { title: "开始Python编程" },
-        { title: "开始C++编程" },
-        { title: "开始JS编程" },
+        { title: "课程专区" },
+        { title: "习题专区" },
         { title: "图形化编程" },
-        { title: "竞赛专区" },
+        { title: "交流专区" },
       ],
       boxData: [
         {
-          img: require("@/assets/image/home/work-0.png"),
           title: "圈圈大作战",
-          head: require("@/assets/image/home/head-0.png"),
-          name: "太难啦",
         },
         {
-          img: require("@/assets/image/home/work-1.png"),
           title: "太空探险",
-          head: require("@/assets/image/home/head-1.png"),
-          name: "我無了",
         },
         {
-          img: require("@/assets/image/home/work-2.png"),
           title: "小猫捉虫子",
-          head: require("@/assets/image/home/head-0.png"),
-          name: "太难啦",
         },
         {
-          img: require("@/assets/image/home/work-3.png"),
           title: "星空逐梦",
-          head: require("@/assets/image/home/head-1.png"),
-          name: "我無了",
         },
         {
-          img: require("@/assets/image/home/work-1.png"),
           title: "太空探险",
-          head: require("@/assets/image/home/head-1.png"),
-          name: "我無了",
         },
         {
-          img: require("@/assets/image/home/work-2.png"),
           title: "小猫捉虫子",
-          head: require("@/assets/image/home/head-0.png"),
-          name: "太难啦",
         },
         {
-          img: require("@/assets/image/home/work-3.png"),
           title: "星空逐梦",
-          head: require("@/assets/image/home/head-1.png"),
-          name: "我無了",
         },
       ],
       boxDatas: [],
@@ -238,7 +211,12 @@ export default {
           name: "太难啦",
         },
       ],
-      videoDatas: []
+      videoDatas: [],
+      boxList: [
+        { icon: 'el-icon-s-platform', desc: '6岁+ 图形化编程体系' },
+        { icon: 'el-icon-video-play', desc: '9岁+ 视频教学、图形化编程' },
+        { icon: 'el-icon-edit-outline', desc: '12岁+ 视频教学、练习题目、图形化编程' },
+      ]
     };
   },
   created() {
@@ -254,10 +232,12 @@ export default {
       }
     },
     handleCode(data) {
-      if(data === 3) {
+      if (data === 0) {
+        this.$router.push({ path: "/course" });
+      } else if (data === 3) {
         this.$router.push({ path: "/codeMirror" });
       }
-    }
+    },
   },
 };
 </script>
@@ -360,6 +340,21 @@ export default {
           }
           span {
             margin-left: 10px;
+          }
+        }
+        .box-task {
+          color: #acacac;
+        }
+      }
+      .boxes{
+        padding: 10px 0 40px 0;
+        .box-list {
+          margin-top: 10px;
+          text-align: center;
+          span {
+            margin-left: 10px;
+            font-size: 16px;
+            font-weight: 600;
           }
         }
       }

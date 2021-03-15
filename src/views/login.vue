@@ -1,10 +1,6 @@
 <!--
  * @Author: wangmeng
- * @Date: 2021-01-04 16:12:55
- * @LastEditTime: 2021-01-08 16:34:55
- * @LastEditors: wangmeng
  * @Description: 登录页
- * @FilePath: https://github.com/wangmeng456/bs-app-vue/blob/master/src/views/login.vue
 -->
 <template>
   <div class="login">

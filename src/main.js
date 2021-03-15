@@ -34,6 +34,9 @@ window.JSHINT = jshint.JSHINT;
 import { codemirror } from "vue-codemirror";
 import "codemirror/lib/codemirror.css";
 
+import { BlocklyRegisterIgnoredElements } from './views/codeMirror/lib'
+BlocklyRegisterIgnoredElements(Vue)
+
 // 全局方法挂载
 Vue.prototype.transformDateFormat = transformDateFormat
 Vue.prototype.resetForm = resetForm

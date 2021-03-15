@@ -1,10 +1,6 @@
 <!--
  * @Author: wangmeng
- * @Date: 2021-01-06 15:23:03
- * @LastEditTime: 2021-01-06 17:47:45
- * @LastEditors: wangmeng
  * @Description: 简介页
- * @FilePath: https://github.com/wangmeng456/bs-app-vue/blob/master/src/views/descibe.vue
 -->
 <template>
   <div class="descibe">

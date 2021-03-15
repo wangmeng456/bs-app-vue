@@ -16,6 +16,10 @@ const whiteList = [
   "/login",
   "/index",
   "/codeMirror",
+  "/course",
+  "/courseDetails",
+  "/personalCenter",
+  "/personalEdit"
 ];
 
 router.beforeEach((to, from, next) => {
